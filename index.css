@@ -4,11 +4,7 @@
    margin:10px;
 border: 1px solid black;
 }
-.res-container{
-    display: flex;
-    flex-wrap: wrap;
 
-}
 .nav-items>ul{
     list-style-type: none;
     display: flex;
@@ -21,17 +17,59 @@ padding: 10px;
 .logo{
     width: 100px;
 }
-.card{
-    width:  200px;
-   margin: 5px;
-    padding: 5px;
+
+.res-container{
+    display: flex;
+    flex-wrap: wrap;
+
+
+}
+.res-card{
     
+   margin: 2px;
+    padding: 5px;
+    width: 200px;
+}
+.res-card:hover{
+    cursor: pointer;
+    border: 1px solid black;
 }
 
-.card>img{
+.res-logo{
     width: 100%;
+
 } 
 .filter-btn{
-    margin:10px ;
+    margin:5px ;
     cursor: pointer;
+}
+.search{
+     margin:5px ;
+     
+}
+.search-btn{
+    cursor: pointer;
+}
+
+.shimmer-container{
+
+display:flex;
+flex-wrap: wrap;
+}
+
+.shimmer-card{
+margin: 20px;
+width: 200px;
+height: 400px;
+background-color: #f0f0f0;
+
+}
+
+.Login{
+    margin:2px;
+    padding:0 10px;
+    cursor:pointer;
+}
+.filter{
+    display: flex;
 }
