@@ -32,7 +32,7 @@ padding: 10px;
 }
 .res-card:hover{
     cursor: pointer;
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.307);
 }
 
 .res-logo{
