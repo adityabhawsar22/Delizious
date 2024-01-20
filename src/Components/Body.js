@@ -1,11 +1,11 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
-// import ResList from "../utils/mockdata";
 import React from "react";
 import Shimmer from "./Shimmer";
-
+import { Link } from "react-router-dom";
 const Body = () => {
   //local state variable
+  //always create useState and useEffect inside body on top never in if() for() or fun()
   const [listofRestaurants, setListOfRestraunt] = useState([]);
   const [FilteredRestaurants, setFilteredRestraunt] = useState([]);
 
@@ -14,9 +14,7 @@ const Body = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    console.log("helloo");
-  }, []);
+
   async function fetchData() {
     const data = await fetch(
       "https://corsproxy.org/?" +
@@ -25,7 +23,7 @@ const Body = () => {
         )
     );
     const json = await data.json();
-
+console.log(json);
     //optional chaining
     setListOfRestraunt(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
@@ -92,11 +90,11 @@ const Body = () => {
       <div className="res-container">
         {
         FilteredRestaurants.map((restaurant) => (
-          <RestaurantCard
-            key={restaurant?.info.id}
-            id={restaurant?.info?.id}
+       <Link className="link" key={restaurant?.info.id} to={"/restaurants/"+ restaurant.info.id }>  <RestaurantCard
+           
+            // id={restaurant?.info?.id}
             resData={restaurant?.info}
-          />
+          /></Link> 
         ))}
       </div>
     </div>
