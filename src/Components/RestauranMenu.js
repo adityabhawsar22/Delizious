@@ -1,23 +1,15 @@
-import { FETCH_MENU_URL } from "../utils/constants";
+
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import useRestaurantmenu from "../utils/useRestaurantmenu";
 import Shimmer from "./Shimmer";
 const RestaurantMenu = () => {
 
 
   const { resId } = useParams();
 
-  const [resInfo, SetresInfo] = useState(null);
-
-  useEffect(() => {
-    fetchmenu();
-  }, []);
-
-  const fetchmenu = async () => {
-    const data = await fetch(FETCH_MENU_URL + resId);
-    const json = await data.json();
-    SetresInfo(json.data);
-  };
+ 
+  const  resInfo =useRestaurantmenu(resId);//custom hook for fetching data to make the code more modular and follow single responsibility principle
+ 
 
   if (resInfo == null) return <Shimmer />;
   const { name, cuisines, costForTwoMessage } = resInfo?.cards[0]?.card?.card?.info;

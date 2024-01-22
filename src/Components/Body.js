@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import React from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlinestatus from "../utils/useOnlinestatus";
+
 const Body = () => {
   //local state variable
   //always create useState and useEffect inside body on top never in if() for() or fun()
@@ -23,7 +25,7 @@ const Body = () => {
         )
     );
     const json = await data.json();
-console.log(json);
+
     //optional chaining
     setListOfRestraunt(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
@@ -32,6 +34,10 @@ console.log(json);
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   }
+const online=useOnlinestatus();
+if(online===false) 
+return <h1>Oops You are Offline !!!</h1>
+
 
   //conditional rendering
   if (listofRestaurants.length === 0) {
@@ -90,11 +96,10 @@ console.log(json);
       <div className="res-container">
         {
         FilteredRestaurants.map((restaurant) => (
-       <Link className="link" key={restaurant?.info.id} to={"/restaurants/"+ restaurant.info.id }>  <RestaurantCard
-           
-            // id={restaurant?.info?.id}
-            resData={restaurant?.info}
-          /></Link> 
+       <Link className="link" key={restaurant?.info.id} to={"/restaurants/"+ restaurant.info.id }> 
+        <RestaurantCard // id={restaurant?.info?.id}
+        //we are passing props(data,information)to a child component(restuarant card) from parent component
+            resData={restaurant?.info}/></Link> 
         ))}
       </div>
     </div>

@@ -3,7 +3,7 @@ import { CDN_URL } from "../utils/constants";
 const RestaurantCard=(props)=>{
     const{resData}=props;
 
-    
+    //body passes resdata in props ,we first destructure resData 
     const{
         cloudinaryImageId,
         name,
@@ -11,7 +11,7 @@ const RestaurantCard=(props)=>{
         cuisines,
         costForTwo,
         deliveryTime,
-    } =resData;
+    } = resData ;
 
 
     return(
@@ -30,3 +30,4 @@ const RestaurantCard=(props)=>{
     }
 
     export default RestaurantCard;
+    
