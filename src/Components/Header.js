@@ -12,13 +12,13 @@ const [btnname,setbtnname]=useState("Login");
 
 const Onlinestatus=useOnlinestatus();
   return (
-    <div className="header">
+    <div className="flex justify-between bg-pink-200">
      <a href="/">
-  <img className="logo"alt= "Logo"  src={ LOGO_URL}/>
+  <img className="w-56"alt= "Logo"  src={ LOGO_URL}/>
 
 
 </a>
-      <div className="flex justify-between ">
+      <div className=" ">
         <ul>
           <li>Online Status :{Onlinestatus ? "🟢" :"🔴"   }</li>
           <li>
