@@ -10,7 +10,7 @@ const Body = () => {
   //always create useState and useEffect inside body on top never in if() for() or fun()
   const [listofRestaurants, setListOfRestraunt] = useState([]);
   const [FilteredRestaurants, setFilteredRestraunt] = useState([]);
-
+const[toprated,settoprated]=useState(false);
   const [searchText, setsearchText] = useState("");
   useEffect(() => {
     fetchData();
@@ -46,16 +46,16 @@ return <h1>Oops You are Offline !!!</h1>
 
   return (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="filter flex">
+        <div className="search  pl-2">
           <input
             type="text"
-            className="search-box"
+            className="border border-solid border-black"
             value={searchText}
             onChange={(e) => setsearchText(e.target.value)}
           ></input>
           <button
-            className="search-btn"
+          className="px-2 py-2 bg-green-100 my-4 ml-2 rounded-lg"
             onClick={() => {
               <input
                 type="text"
@@ -73,27 +73,33 @@ return <h1>Oops You are Offline !!!</h1>
             Search
           </button>
         </div>
+        <div className="search  p-2 flex items-center">
         <button
-          className="filter-btn"
+          className="px-4 py-2 bg-orange-100 rounded-lg"
           
           onClick={() => {
          
+            settoprated(!toprated);
             
             const filteredbestList = listofRestaurants.filter(
               (res) => {
                 
+                
                 return res.info.avgRating > 4.5;}
              
             );
-              setFilteredRestraunt(filteredbestList);
+              
+            if(toprated) setFilteredRestraunt(filteredbestList);
+            else setFilteredRestraunt(listofRestaurants);
           
           }}
         >
           Top Rated Restaurant
         </button>
+        </div>
       </div>
 
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {
         FilteredRestaurants.map((restaurant) => (
        <Link className="link" key={restaurant?.info.id} to={"/restaurants/"+ restaurant.info.id }> 
