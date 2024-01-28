@@ -1,9 +1,9 @@
 
 import { useParams } from "react-router-dom";
 import useRestaurantmenu from "../utils/useRestaurantmenu";
-import Shimmer from "./Shimmer";
 import Restaurancategory from "./Restaurantcategory";
 import { CDN_URL } from "../utils/constants";
+import ResShimmer from "./ResShimmer";
 const RestaurantMenu = () => {
 
 
@@ -13,7 +13,7 @@ const RestaurantMenu = () => {
   const  resInfo =useRestaurantmenu(resId);//custom hook for fetching data to make the code more modular and follow single responsibility principle
  
 
-  if (resInfo == null) return <Shimmer />;
+  if (resInfo == null) return <ResShimmer />;
   const { name, cuisines, costForTwoMessage,cloudinaryImageId ,totalRatingsString,avgRating} = resInfo?.cards[0]?.card?.card?.info;
 console.log(resInfo?.cards[0]?.card?.card?.info);
   const { itemCards } = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
@@ -42,7 +42,7 @@ console.log(resInfo?.cards[0]?.card?.card?.info);
       <h6 className="text-xs  p-1">{totalRatingsString}</h6>
       </div>
 <div>
-<img className="w-72" src={CDN_URL+cloudinaryImageId}/>
+<img className="w-72 rounded-lg" src={CDN_URL+cloudinaryImageId}/>
 
 </div>
 </div>
